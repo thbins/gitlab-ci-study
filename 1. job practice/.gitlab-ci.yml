@@ -1,7 +1,0 @@
-rex1:
-  script: env
-
-rex2:
-  script:
-    - ls
-    - ls -a
