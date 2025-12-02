@@ -1,0 +1,33 @@
+default:
+  image:
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+    
+job1:
+  script:
+    - echo "job1" > README.md
+  cache:
+    key: readme
+    paths:
+      - README.md
+    policy: push
+  
+job2:
+  script:
+    - echo "job2" > README.md
+  cache:
+    key: readme
+    paths:
+      - README.md
+    policy: pull
+  needs: ["job1"]
+
+job3:
+  script:
+    - cat README.md
+  cache:
+    key: readme
+    paths:
+      - README.md
+    policy: pull
+  needs: ["job1", "job2"]
